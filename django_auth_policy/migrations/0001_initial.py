@@ -27,10 +27,10 @@ class Migration(migrations.Migration):
                 ('lockout', models.BooleanField(default=True, help_text='Counts towards lockout count', verbose_name='lockout')),
             ],
             options={
-                'ordering': (b'-id',),
+                'ordering': ('-id',),
                 'verbose_name': 'login attempt',
                 'verbose_name_plural': 'login attempts',
-                'permissions': ((b'unlock', 'Unlock by username or IP address'),),
+                'permissions': (('unlock', 'Unlock by username or IP address'),),
             },
             bases=(models.Model,),
         ),
@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
                 ('password', models.CharField(default=b'', verbose_name='password', max_length=128, editable=False)),
             ],
             options={
-                'ordering': (b'-id',),
+                'ordering': ('-id',),
                 'verbose_name': 'password change',
                 'verbose_name_plural': 'password changes',
             },
@@ -60,7 +60,7 @@ class Migration(migrations.Migration):
                 ('by_user', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=django.db.models.deletion.PROTECT, to_field='id', verbose_name='by user')),
             ],
             options={
-                'ordering': (b'-id',),
+                'ordering': ('-id',),
                 'verbose_name': 'user change',
                 'verbose_name_plural': 'user changes',
             },
