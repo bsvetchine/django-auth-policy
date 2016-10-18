@@ -57,7 +57,8 @@ class PasswordChangeTemporary(PasswordChangePolicy):
 def update_password(session, user):
     """ Store hashed version of users' password hash in the current session
     """
-    hd = hashlib.sha256('pwch' + user.password).hexdigest()
+    pwd = 'pwch' + user.password
+    hd = hashlib.sha256(pwd.encode("utf-8")).hexdigest()
     session['password_hash'] = hd
 
 
@@ -75,5 +76,6 @@ def password_changed(session, user):
         update_password(session, user)
         return False
 
-    hd = hashlib.sha256('pwch' + user.password).hexdigest()
+    pwd = 'pwch' + user.password
+    hd = hashlib.sha256(pwd.encode("utf-8")).hexdigest()
     return session.get('password_hash', '') != hd
